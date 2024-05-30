@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="528.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.lms.controller.StudentFormController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Student Form">
@@ -47,13 +46,13 @@
          </font>
       </TextField>
       <Separator layoutX="14.0" layoutY="141.0" prefHeight="0.0" prefWidth="854.0" />
-      <TableView layoutX="14.0" layoutY="199.0" prefHeight="320.0" prefWidth="854.0">
+      <TableView fx:id="tblStudents" layoutX="14.0" layoutY="199.0" prefHeight="320.0" prefWidth="854.0">
         <columns>
-          <TableColumn prefWidth="142.0" text="Name" />
-          <TableColumn prefWidth="202.0" text="Address" />
-            <TableColumn prefWidth="87.0" text="Age" />
-            <TableColumn prefWidth="256.0" text="Email" />
-            <TableColumn prefWidth="165.0" text="Options" />
+          <TableColumn fx:id="colName" prefWidth="142.0" text="Name" />
+          <TableColumn fx:id="colAddress" prefWidth="202.0" text="Address" />
+            <TableColumn fx:id="colAge" prefWidth="87.0" text="Age" />
+            <TableColumn fx:id="colEmail" prefWidth="256.0" text="Email" />
+            <TableColumn fx:id="colOption" prefWidth="165.0" text="Options" />
         </columns>
       </TableView>
    </children>
