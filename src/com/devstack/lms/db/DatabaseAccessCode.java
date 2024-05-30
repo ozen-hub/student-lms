@@ -54,4 +54,21 @@ public class DatabaseAccessCode {
         }
         return studentList;
     }
+
+    public boolean deleteStudent(String id) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/devstack_lms", "root", "1234");
+
+        String sql="DELETE FROM student WHERE student_id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,id);
+
+        int affectedRowCount = preparedStatement.executeUpdate();
+
+        if(affectedRowCount>0){
+            return true;
+        }
+        return false;
+    }
 }

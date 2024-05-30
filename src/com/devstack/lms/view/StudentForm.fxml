@@ -40,7 +40,7 @@
          </font>
       </TextField>
       <Button layoutX="766.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="New Student" />
-      <TextField layoutX="14.0" layoutY="153.0" prefHeight="31.0" prefWidth="854.0" promptText="Search here">
+      <TextField fx:id="txtSearch" layoutX="14.0" layoutY="153.0" prefHeight="31.0" prefWidth="854.0" promptText="Search here">
          <font>
             <Font size="15.0" />
          </font>
@@ -51,8 +51,8 @@
           <TableColumn fx:id="colName" prefWidth="142.0" text="Name" />
           <TableColumn fx:id="colAddress" prefWidth="202.0" text="Address" />
             <TableColumn fx:id="colAge" prefWidth="87.0" text="Age" />
-            <TableColumn fx:id="colEmail" prefWidth="256.0" text="Email" />
-            <TableColumn fx:id="colOption" prefWidth="165.0" text="Options" />
+            <TableColumn fx:id="colEmail" prefWidth="161.0" text="Email" />
+            <TableColumn fx:id="colOption" prefWidth="260.0" text="Options" />
         </columns>
       </TableView>
    </children>
