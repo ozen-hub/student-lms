@@ -71,4 +71,47 @@ public class DatabaseAccessCode {
         }
         return false;
     }
+
+    public boolean updateStudent(Student student) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/devstack_lms", "root", "1234");
+
+        String sql="UPDATE student SET student_name=?, address=?, age=?,email=? WHERE student_id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,student.getStudentName());
+        preparedStatement.setString(2,student.getAddress());
+        preparedStatement.setInt(3,student.getAge());
+        preparedStatement.setString(4,student.getEmail());
+        preparedStatement.setString(5,student.getStudentId());
+
+        int affectedRowCount = preparedStatement.executeUpdate();
+
+        if(affectedRowCount>0){
+            return true;
+        }
+        return false;
+    }
+
+    public Student findStudent(String studentId) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/devstack_lms", "root", "1234");
+
+        String sql="SELECT * FROM student WHERE student_id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,studentId);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+
+        if (resultSet.next()){
+            return new Student(
+                    resultSet.getString(1), resultSet.getString(2),
+                    resultSet.getString(3),resultSet.getString(5),
+                    resultSet.getInt(4)
+            );
+        }
+        return null;
+    }
 }
