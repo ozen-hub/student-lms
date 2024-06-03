@@ -3,6 +3,7 @@ package com.devstack.lms.controller;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -15,6 +16,7 @@ public class RegisterFormController {
     public ComboBox cmbCourse;
     public ComboBox cmbStudent;
     public TextField txtEmail;
+    public RadioButton rBtnCash;
 
     public void registerOnAction(ActionEvent actionEvent) {
     }
