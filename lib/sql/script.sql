@@ -27,6 +27,8 @@ DESC course;
 CREATE TABLE IF NOT EXISTS registration(
                                            registration_id VARCHAR(45),
                                            registered_date DATE,
+                                           nic LONGBLOB,
+                                           paymentType ENUM('CASH','CARD'),
                                            student VARCHAR(45),
                                            course VARCHAR(45),
                                            CONSTRAINT PRIMARY KEY (registration_id, student, course),

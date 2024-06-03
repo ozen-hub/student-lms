@@ -22,5 +22,15 @@
             <Font size="16.0" />
          </font>
       </Button>
+      <Button layoutX="455.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnOpenRegistrationFormOnAction" prefHeight="160.0" prefWidth="211.0" text="New Registrations">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="12.0" layoutY="241.0" mnemonicParsing="false" onAction="#btnOpenCourseFormOnAction" prefHeight="160.0" prefWidth="211.0" text="All Registrations">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="context" prefHeight="271.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.lms.controller.RegisterFormController">
+<AnchorPane fx:id="context" prefHeight="359.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.lms.controller.RegisterFormController">
    <children>
       <Label layoutX="24.0" layoutY="24.0" text="Registration Form">
          <font>
@@ -19,36 +19,35 @@
          </font>
       </Label>
       <Separator layoutX="24.0" layoutY="59.0" prefHeight="0.0" prefWidth="854.0" />
-      <Button fx:id="btnSave" layoutX="24.0" layoutY="230.0" mnemonicParsing="false" onAction="#registerOnAction" prefHeight="25.0" prefWidth="102.0" text="Register Now" />
+      <Button fx:id="btnSave" layoutX="24.0" layoutY="310.0" mnemonicParsing="false" onAction="#registerOnAction" prefHeight="25.0" prefWidth="102.0" text="Register Now" />
       <Button layoutX="774.0" layoutY="26.0" mnemonicParsing="false" onAction="#btnBackToHomeOnAction" prefHeight="25.0" prefWidth="102.0" text="Back to home" />
-      <TextField fx:id="txtName" layoutX="242.0" layoutY="120.0" prefHeight="31.0" prefWidth="205.0" promptText="Student Name">
+      <TextField fx:id="txtName" editable="false" layoutX="25.0" layoutY="207.0" prefHeight="31.0" prefWidth="205.0" promptText="Student Name">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtCourseName" layoutX="242.0" layoutY="72.0" prefHeight="31.0" prefWidth="205.0" promptText="Course Name">
+      <TextField fx:id="txtCourseName" editable="false" layoutX="24.0" layoutY="115.0" prefHeight="31.0" prefWidth="205.0" promptText="Course Name">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtCourseFee" layoutX="459.0" layoutY="72.0" prefHeight="31.0" prefWidth="111.0" promptText="Course Fee">
+      <TextField fx:id="txtCourseFee" editable="false" layoutX="242.0" layoutY="115.0" prefHeight="31.0" prefWidth="111.0" promptText="Course Fee">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Separator layoutX="24.0" layoutY="207.0" prefHeight="0.0" prefWidth="854.0" />
-      <ComboBox fx:id="cmbCourse" layoutX="24.0" layoutY="72.0" prefHeight="31.0" prefWidth="205.0" promptText="Course" />
-      <ComboBox fx:id="cmbStudent" layoutX="24.0" layoutY="120.0" prefHeight="31.0" prefWidth="205.0" promptText="Student" />
-      <TextField fx:id="txtEmail" layoutX="462.0" layoutY="120.0" prefHeight="31.0" prefWidth="205.0" promptText="Student Email">
+      <ComboBox fx:id="cmbCourse" layoutX="24.0" layoutY="72.0" prefHeight="31.0" prefWidth="854.0" promptText="Course" />
+      <ComboBox fx:id="cmbStudent" layoutX="24.0" layoutY="164.0" prefHeight="31.0" prefWidth="854.0" promptText="Student" />
+      <TextField fx:id="txtEmail" editable="false" layoutX="242.0" layoutY="207.0" prefHeight="31.0" prefWidth="205.0" promptText="Student Email">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <RadioButton fx:id="rBtnCash" layoutX="24.0" layoutY="173.0" mnemonicParsing="false" selected="true" text="Cash">
+      <RadioButton fx:id="rBtnCash" layoutX="24.0" layoutY="253.0" mnemonicParsing="false" selected="true" text="Cash">
          <toggleGroup>
             <ToggleGroup fx:id="paymentType" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="81.0" layoutY="173.0" mnemonicParsing="false" text="Card" toggleGroup="$paymentType" />
+      <RadioButton layoutX="81.0" layoutY="253.0" mnemonicParsing="false" text="Card" toggleGroup="$paymentType" />
    </children>
 </AnchorPane>

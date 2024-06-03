@@ -27,4 +27,8 @@ public class DashboardFormController {
     public void btnOpenCourseFormOnAction(ActionEvent actionEvent) throws IOException {
         setUi("CourseForm");
     }
+
+    public void btnOpenRegistrationFormOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("RegisterForm");
+    }
 }
