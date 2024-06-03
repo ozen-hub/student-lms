@@ -2,6 +2,9 @@ package com.devstack.lms.controller;
 
 import com.devstack.lms.db.DatabaseAccessCode;
 import com.devstack.lms.model.Course;
+import com.devstack.lms.model.Registration;
+import com.devstack.lms.model.Student;
+import com.devstack.lms.util.PaymentType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +16,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class RegisterFormController {
@@ -23,20 +28,63 @@ public class RegisterFormController {
     public TextField txtCourseName;
     public TextField txtCourseFee;
     public ComboBox<String> cmbCourse;
-    public ComboBox cmbStudent;
+    public ComboBox<String> cmbStudent;
     public TextField txtEmail;
     public RadioButton rBtnCash;
 
+    private Student selectedStudent;
+    private Course selectedCourse;
+
     public void initialize(){
         loadAllCourses();
+        loadAllStudents();
 
         /*============*/
         cmbCourse.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     setCourseDetails(newValue);
         });
+
+        cmbStudent.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    setStudentDetails(newValue);
+                });
         /*============*/
 
+    }
+
+    private void setStudentDetails(String newValue) {
+        String[] splitData = newValue.split("\\|");
+        String studentId=splitData[0].trim();
+
+        try {
+            DatabaseAccessCode databaseAccessCode
+                    = new DatabaseAccessCode();
+            selectedStudent = databaseAccessCode.findStudent(studentId);
+            if (selectedStudent==null){
+                new Alert(Alert.AlertType.WARNING,"Student not found...");
+                return;
+            }
+
+            txtName.setText(selectedStudent.getStudentName());
+            txtEmail.setText(selectedStudent.getEmail());
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    ObservableList<String> studentObList = null;
+    private void loadAllStudents() {
+        try{
+            DatabaseAccessCode databaseAccessCode = new DatabaseAccessCode();
+            studentObList = FXCollections.observableArrayList(databaseAccessCode.findAllStudents("")
+                    .stream().map(e->e.getStudentId()+" | "+e.getStudentName()).collect(Collectors.toList()));
+            cmbStudent.setItems(studentObList);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void setCourseDetails(String newValue) {
@@ -46,14 +94,14 @@ public class RegisterFormController {
         try {
             DatabaseAccessCode databaseAccessCode
                     = new DatabaseAccessCode();
-            Course course = databaseAccessCode.findCourse(courseId);
-            if (course==null){
-                new Alert(Alert.AlertType.WARNING,"Student not found...");
+            selectedCourse = databaseAccessCode.findCourse(courseId);
+            if (selectedCourse==null){
+                new Alert(Alert.AlertType.WARNING,"Course not found...");
                 return;
             }
 
-            txtCourseName.setText(course.getCourseName());
-            txtCourseFee.setText(String.valueOf(course.getFee()));
+            txtCourseName.setText(selectedCourse.getCourseName());
+            txtCourseFee.setText(String.valueOf(selectedCourse.getFee()));
 
         }catch (Exception e){
             e.printStackTrace();
@@ -75,10 +123,22 @@ public class RegisterFormController {
     }
 
     public void registerOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("DashboardForm");
+
+        Registration registration =
+                new Registration(
+                        UUID.randomUUID().toString(),
+                        new Date(),
+                        null,
+                        rBtnCash.isSelected()? PaymentType.CASH:PaymentType.CARD,
+                        selectedStudent.getStudentId(),
+                        selectedCourse.getCourseId());
+
+
+
     }
 
-    public void btnBackToHomeOnAction(ActionEvent actionEvent) {
+    public void btnBackToHomeOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("DashboardForm");
     }
 
     private void setUi(String location) throws IOException {
