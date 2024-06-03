@@ -21,16 +21,19 @@ public class LoginFormController {
     public PasswordField txtPassword;
 
     public void openDashboardFormOnAction(ActionEvent actionEvent) throws IOException {
-        DatabaseAccessCode databaseAccessCode= new DatabaseAccessCode();
+        DatabaseAccessCode databaseAccessCode = new DatabaseAccessCode();
         try {
             boolean isLoggedIn = databaseAccessCode.login(
                     txtUsername.getText(),
                     txtPassword.getText()
             );
 
-            if(isLoggedIn){
+            if (isLoggedIn) {
                 System.out.println("Logged..");
-            }else{
+
+                setUi("DashboardForm");
+
+            } else {
                 System.out.println("Try Again..");
             }
 
@@ -39,18 +42,17 @@ public class LoginFormController {
         }
 
 
-      /*  URL resource = getClass().getResource("../view/DashboardForm.fxml");
-        Stage stage = (Stage) context.getScene().getWindow();
-        stage.centerOnScreen();
-        stage.setScene(new Scene(FXMLLoader.load(resource)));
-        stage.setTitle("Dashboard");*/
     }
 
     public void navigateToRegisterFormOnAction(ActionEvent actionEvent) throws IOException {
-        URL resource = getClass().getResource("../view/SignupForm.fxml");
+        setUi("SignupForm");
+    }
+
+    private void setUi(String location) throws IOException {
+        URL resource = getClass().getResource("../view/" + location + ".fxml");
         Stage stage = (Stage) context.getScene().getWindow();
         stage.centerOnScreen();
         stage.setScene(new Scene(FXMLLoader.load(resource)));
-        stage.setTitle("Sign Up Form");
+        stage.setTitle(location);
     }
 }

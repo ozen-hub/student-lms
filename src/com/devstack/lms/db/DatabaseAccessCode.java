@@ -148,6 +148,7 @@ public class DatabaseAccessCode {
                         "1234");
 
         String sql = "SELECT * FROM user_table WHERE username = '" + username + "' AND password = '" + password + "'";
+        System.out.println(sql);
         //SELECT * FROM user_table WHERE username = 'username' AND password = 'password'
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
