@@ -16,3 +16,11 @@ CREATE TABLE IF NOT EXISTS user_table(
      CONSTRAINT PRIMARY KEY (user_id)
 );
 DESC user_table;
+
+CREATE TABLE IF NOT EXISTS course(
+                                      course_id VARCHAR(45),
+                                      course_name VARCHAR(45),
+                                      fee DECIMAL(10,2),
+                                      CONSTRAINT PRIMARY KEY (course_id)
+);
+DESC course;
