@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.devstack.lms.controller.CourseFormController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane fx:id="context" prefHeight="543.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.lms.controller.CourseFormController">
+   <children>
+      <Label layoutX="24.0" layoutY="24.0" text="Course Form">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Separator layoutX="24.0" layoutY="59.0" prefHeight="0.0" prefWidth="854.0" />
+      <Button fx:id="btnSave" layoutX="776.0" layoutY="110.0" mnemonicParsing="false" onAction="#saveCourseOnAction" prefHeight="25.0" prefWidth="102.0" text="Save Course" />
+      <Button layoutX="664.0" layoutY="26.0" mnemonicParsing="false" onAction="#btnBackToHomeOnAction" prefHeight="25.0" prefWidth="102.0" text="Back to home" />
+      <TextField fx:id="txtCourseName" layoutX="24.0" layoutY="72.0" prefHeight="31.0" prefWidth="205.0" promptText="Course Name">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtCourseFee" layoutX="242.0" layoutY="72.0" prefHeight="31.0" prefWidth="205.0" promptText="Course Fee">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Button layoutX="776.0" layoutY="26.0" mnemonicParsing="false" onAction="#btnNewCourseOnAction" prefHeight="25.0" prefWidth="102.0" text="New Course" />
+      <TextField fx:id="txtSearch" layoutX="24.0" layoutY="163.0" prefHeight="31.0" prefWidth="854.0" promptText="Search here">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Separator layoutX="24.0" layoutY="151.0" prefHeight="0.0" prefWidth="854.0" />
+      <TableView fx:id="tblCourses" layoutX="24.0" layoutY="209.0" prefHeight="320.0" prefWidth="854.0">
+         <columns>
+            <TableColumn fx:id="colCourseName" prefWidth="142.0" text="Course Name" />
+            <TableColumn fx:id="colCourseFee" prefWidth="426.0" text="Course Fee" />
+            <TableColumn fx:id="colOption" prefWidth="285.0" text="Options" />
+         </columns>
+      </TableView>
+   </children>
 </AnchorPane>
