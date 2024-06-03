@@ -16,8 +16,8 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUsername" layoutX="14.0" layoutY="61.0" prefHeight="33.0" prefWidth="325.0" promptText="Username" />
-      <PasswordField fx:id="txtPassword" layoutX="14.0" layoutY="111.0" prefHeight="33.0" prefWidth="325.0" promptText="Password" />
+      <TextField fx:id="txtUsername" layoutX="14.0" layoutY="61.0" prefHeight="33.0" prefWidth="325.0" promptText="Username" text="admin" />
+      <PasswordField fx:id="txtPassword" layoutX="14.0" layoutY="111.0" prefHeight="33.0" prefWidth="325.0" promptText="Password" text="1234" />
       <Hyperlink layoutX="125.0" layoutY="207.0" onAction="#navigateToRegisterFormOnAction" text="create an account" />
    </children>
 </AnchorPane>

@@ -23,4 +23,8 @@ public class DashboardFormController {
         stage.setScene(new Scene(FXMLLoader.load(resource)));
         stage.setTitle(location);
     }
+
+    public void btnOpenCourseFormOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("CourseForm");
+    }
 }
