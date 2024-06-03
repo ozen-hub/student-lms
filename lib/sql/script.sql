@@ -9,3 +9,10 @@ CREATE TABLE IF NOT EXISTS student(
     CONSTRAINT PRIMARY KEY (student_id)
     );
 DESC student;
+CREATE TABLE IF NOT EXISTS user_table(
+     user_id VARCHAR(45),
+     user_name VARCHAR(45) UNIQUE NOT NULL ,
+     password TEXT,
+     CONSTRAINT PRIMARY KEY (user_id)
+);
+DESC user_table;
