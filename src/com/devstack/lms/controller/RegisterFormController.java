@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -42,12 +43,16 @@ public class RegisterFormController {
         /*============*/
         cmbCourse.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
-                    setCourseDetails(newValue);
+                    if (newValue!=null){
+                        setCourseDetails(newValue);
+                    }
         });
 
         cmbStudent.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
-                    setStudentDetails(newValue);
+                    if(newValue!=null){
+                        setStudentDetails(newValue);
+                    }
                 });
         /*============*/
 
@@ -124,17 +129,45 @@ public class RegisterFormController {
 
     public void registerOnAction(ActionEvent actionEvent) throws IOException {
 
-        Registration registration =
-                new Registration(
-                        UUID.randomUUID().toString(),
-                        new Date(),
-                        null,
-                        rBtnCash.isSelected()? PaymentType.CASH:PaymentType.CARD,
-                        selectedStudent.getStudentId(),
-                        selectedCourse.getCourseId());
+        if(selectedCourse==null || selectedStudent==null){
+            new Alert(Alert.AlertType.WARNING,"please return to home and come back... or try after choose potential data").show();
+            return;
+        }
 
+        try {
+            Registration registration =
+                    new Registration(
+                            UUID.randomUUID().toString(),
+                            new Date(),
+                            null,
+                            rBtnCash.isSelected()? PaymentType.CASH:PaymentType.CARD,
+                            selectedStudent.getStudentId(),
+                            selectedCourse.getCourseId());
+            DatabaseAccessCode databaseAccessCode = new DatabaseAccessCode();
+            boolean isSaved = databaseAccessCode.register(registration);
+            if (isSaved) {
+                new Alert(Alert.AlertType.INFORMATION, "registration was successful..", ButtonType.CLOSE).show();
+                clearFields();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Try Again..", ButtonType.CLOSE).show();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.CLOSE).show();
+        }
 
+    }
 
+    private void clearFields() {
+        cmbCourse.setValue(null);
+        cmbStudent.setValue(null);
+
+        txtEmail.clear();
+        txtName.clear();
+        txtCourseFee.clear();
+        txtCourseName.clear();
+
+        selectedStudent=null;
+        selectedCourse=null;
     }
 
     public void btnBackToHomeOnAction(ActionEvent actionEvent) throws IOException {
