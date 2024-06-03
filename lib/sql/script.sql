@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS student(
 DESC student;
 CREATE TABLE IF NOT EXISTS user_table(
      user_id VARCHAR(45),
-     user_name VARCHAR(45) UNIQUE NOT NULL ,
+     username VARCHAR(45) UNIQUE NOT NULL ,
      password TEXT,
      CONSTRAINT PRIMARY KEY (user_id)
 );
