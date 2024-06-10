@@ -1,5 +1,6 @@
 package com.devstack.lms.dao.custom.impl;
 
+import com.devstack.lms.dao.CrudUtil;
 import com.devstack.lms.dao.custom.StudentDao;
 import com.devstack.lms.db.DbConnection;
 import com.devstack.lms.entity.Student;
@@ -14,15 +15,8 @@ import java.util.List;
 public class StudentDaoImpl implements StudentDao {
     @Override
     public boolean create(Student student) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO student VALUES(?,?,?,?,?)";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, student.getStudentId());
-        preparedStatement.setString(2, student.getStudentName());
-        preparedStatement.setString(3, student.getAddress());
-        preparedStatement.setInt(4, student.getAge());
-        preparedStatement.setString(5, student.getEmail());
-
-        return preparedStatement.executeUpdate()>0;
+        return CrudUtil.execute("INSERT INTO student VALUES(?,?,?,?,?)",
+                student.getStudentId(),student.getStudentName(),student.getAddress(), student.getAge(),student.getEmail());
     }
 
     @Override
