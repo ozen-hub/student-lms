@@ -1,6 +1,5 @@
 package com.devstack.lms.controller;
 
-import com.devstack.lms.db.DatabaseAccessCode;
 import com.devstack.lms.entity.Course;
 import com.devstack.lms.entity.Registration;
 import com.devstack.lms.entity.Student;

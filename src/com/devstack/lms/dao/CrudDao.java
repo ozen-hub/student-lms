@@ -8,5 +8,5 @@ public interface CrudDao<T,ID> {
     public T find(ID id) throws SQLException, ClassNotFoundException;
     public boolean update(T t) throws SQLException, ClassNotFoundException;
     public boolean delete(ID id) throws SQLException, ClassNotFoundException;
-    public List<T> findAll();
+    public List<T> findAll() throws SQLException, ClassNotFoundException;
 }
