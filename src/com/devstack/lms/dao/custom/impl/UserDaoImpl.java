@@ -1,8 +1,10 @@
 package com.devstack.lms.dao.custom.impl;
 
+import com.devstack.lms.dao.CrudUtil;
 import com.devstack.lms.dao.custom.UserDao;
 import com.devstack.lms.db.DbConnection;
 import com.devstack.lms.entity.User;
+import com.devstack.lms.util.PasswordManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,13 +16,8 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
     @Override
     public boolean create(User user) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO user_table VALUES(?,?,?)";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, user.getUserId());
-        preparedStatement.setString(2, user.getUsername());
-        preparedStatement.setString(3, user.getPassword());
-
-        return preparedStatement.executeUpdate()>0;
+        return CrudUtil.execute("INSERT INTO user_table VALUES(?,?,?)",
+                user.getUserId(), user.getUsername(), PasswordManager.hash(user.getPassword()));
     }
 
     @Override

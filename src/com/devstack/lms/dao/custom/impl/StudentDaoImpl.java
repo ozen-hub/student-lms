@@ -21,13 +21,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public Student find(String s) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT * FROM student WHERE student_id=?";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, s);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-
+        ResultSet resultSet = CrudUtil.execute("SELECT * FROM student WHERE student_id=?",s);
         if (resultSet.next()) {
             return new Student(
                     resultSet.getString(1), resultSet.getString(2),
@@ -40,23 +34,13 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public boolean update(Student student) throws SQLException, ClassNotFoundException {
-        String sql = "UPDATE student SET student_name=?, address=?, age=?,email=? WHERE student_id=?";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, student.getStudentName());
-        preparedStatement.setString(2, student.getAddress());
-        preparedStatement.setInt(3, student.getAge());
-        preparedStatement.setString(4, student.getEmail());
-        preparedStatement.setString(5, student.getStudentId());
-        return preparedStatement.executeUpdate()>0;
+        return CrudUtil.execute("UPDATE student SET student_name=?, address=?, age=?,email=? WHERE student_id=?",
+                student.getStudentName(),student.getAddress(),student.getAge(),student.getEmail(),student.getStudentId());
     }
 
     @Override
     public boolean delete(String s) throws SQLException, ClassNotFoundException {
-        String sql = "DELETE FROM student WHERE student_id=?";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, s);
-
-        return preparedStatement.executeUpdate()>0;
+        return CrudUtil.execute("DELETE FROM student WHERE student_id=?",s);
     }
 
     @Override
@@ -67,13 +51,8 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public List<Student> search(String searchText) throws SQLException, ClassNotFoundException {
         searchText = "%" + searchText + "%";
-
-        String sql = "SELECT * FROM student WHERE student_name LIKE ? OR email LIKE ?";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, searchText);
-        preparedStatement.setString(2, searchText);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet resultSet = CrudUtil.execute("SELECT * FROM student WHERE student_name LIKE ? OR email LIKE ?",
+                searchText,searchText);
 
         List<Student> studentList = new ArrayList<>();
 
