@@ -1,4 +1,4 @@
-package com.devstack.lms.model;
+package com.devstack.lms.entity;
 
 import com.devstack.lms.util.PaymentType;
 

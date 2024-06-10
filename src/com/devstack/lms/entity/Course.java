@@ -1,4 +1,4 @@
-package com.devstack.lms.model;
+package com.devstack.lms.entity;
 
 public class Course {
     private String courseId;

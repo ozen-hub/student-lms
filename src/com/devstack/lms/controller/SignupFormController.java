@@ -1,7 +1,7 @@
 package com.devstack.lms.controller;
 
 import com.devstack.lms.db.DatabaseAccessCode;
-import com.devstack.lms.model.User;
+import com.devstack.lms.entity.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

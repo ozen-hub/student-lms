@@ -1,9 +1,9 @@
 package com.devstack.lms.db;
 
-import com.devstack.lms.model.Course;
-import com.devstack.lms.model.Registration;
-import com.devstack.lms.model.Student;
-import com.devstack.lms.model.User;
+import com.devstack.lms.entity.Course;
+import com.devstack.lms.entity.Registration;
+import com.devstack.lms.entity.Student;
+import com.devstack.lms.entity.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -172,8 +172,6 @@ public class DatabaseAccessCode {
     //=====Course management==========
     //=====Registration management==========
     public boolean register(Registration registration) throws ClassNotFoundException, SQLException {
-
-
         String sql = "INSERT INTO registration VALUES(?,?,?,?,?,?)";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, registration.getRegisterId());
