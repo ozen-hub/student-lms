@@ -18,7 +18,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
     }
 
     @Override
-    public boolean update(Registration registration, String s) {
+    public boolean update(Registration registration) {
         return false;
     }
 

@@ -18,7 +18,7 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public boolean update(Course course, String s) {
+    public boolean update(Course course) {
         return false;
     }
 
