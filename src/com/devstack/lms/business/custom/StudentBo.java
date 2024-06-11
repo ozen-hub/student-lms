@@ -11,4 +11,5 @@ public interface StudentBo {
     public boolean update(StudentDto dto) throws SQLException, ClassNotFoundException;
     public boolean delete(String id) throws SQLException, ClassNotFoundException;
     public List<StudentDto> findAll() throws SQLException, ClassNotFoundException;
+    public List<StudentDto> search(String searchText) throws SQLException, ClassNotFoundException;
 }
