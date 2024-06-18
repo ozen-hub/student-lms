@@ -1,5 +1,12 @@
 package com.devstack.lms.controller;
 
+import com.devstack.lms.business.BoFactory;
+import com.devstack.lms.business.custom.CourseBo;
+import com.devstack.lms.business.custom.RegistrationBo;
+import com.devstack.lms.business.custom.StudentBo;
+import com.devstack.lms.dto.CourseDto;
+import com.devstack.lms.dto.RegistrationDto;
+import com.devstack.lms.dto.StudentDto;
 import com.devstack.lms.entity.Course;
 import com.devstack.lms.entity.Registration;
 import com.devstack.lms.entity.Student;
@@ -31,8 +38,12 @@ public class RegisterFormController {
     public TextField txtEmail;
     public RadioButton rBtnCash;
 
-    private Student selectedStudent;
-    private Course selectedCourse;
+    private StudentDto selectedStudent;
+    private CourseDto selectedCourse;
+
+    private final RegistrationBo registrationBo = BoFactory.getBo(BoFactory.BoType.REGISTRATION);
+    private final StudentBo studentBo = BoFactory.getBo(BoFactory.BoType.STUDENT);
+    private final CourseBo courseBo = BoFactory.getBo(BoFactory.BoType.COURSE);
 
     public void initialize(){
         loadAllCourses();
@@ -61,9 +72,7 @@ public class RegisterFormController {
         String studentId=splitData[0].trim();
 
         try {
-            DatabaseAccessCode databaseAccessCode
-                    = new DatabaseAccessCode();
-            selectedStudent = databaseAccessCode.findStudent(studentId);
+            selectedStudent = studentBo.find(studentId);
             if (selectedStudent==null){
                 new Alert(Alert.AlertType.WARNING,"Student not found...");
                 return;
@@ -80,8 +89,7 @@ public class RegisterFormController {
     ObservableList<String> studentObList = null;
     private void loadAllStudents() {
         try{
-            DatabaseAccessCode databaseAccessCode = new DatabaseAccessCode();
-            studentObList = FXCollections.observableArrayList(databaseAccessCode.findAllStudents("")
+            studentObList = FXCollections.observableArrayList(studentBo.findAll()
                     .stream().map(e->e.getStudentId()+" | "+e.getStudentName()).collect(Collectors.toList()));
             cmbStudent.setItems(studentObList);
 
@@ -95,9 +103,7 @@ public class RegisterFormController {
         String courseId=splitData[0].trim();
 
         try {
-            DatabaseAccessCode databaseAccessCode
-                    = new DatabaseAccessCode();
-            selectedCourse = databaseAccessCode.findCourse(courseId);
+            selectedCourse = courseBo.find(courseId);
             if (selectedCourse==null){
                 new Alert(Alert.AlertType.WARNING,"Course not found...");
                 return;
@@ -115,8 +121,7 @@ public class RegisterFormController {
     ObservableList<String> courseObList = null;
     private void loadAllCourses() {
         try{
-            DatabaseAccessCode databaseAccessCode = new DatabaseAccessCode();
-            courseObList = FXCollections.observableArrayList(databaseAccessCode.findAllCourses()
+            courseObList = FXCollections.observableArrayList(courseBo.findAll()
                     .stream().map(e->e.getCourseId()+" | "+e.getCourseName()).collect(Collectors.toList()));
             cmbCourse.setItems(courseObList);
 
@@ -133,16 +138,16 @@ public class RegisterFormController {
         }
 
         try {
-            Registration registration =
-                    new Registration(
+            RegistrationDto registration =
+                    new RegistrationDto(
                             UUID.randomUUID().toString(),
                             new Date(),
                             null,
                             rBtnCash.isSelected()? PaymentType.CASH:PaymentType.CARD,
                             selectedStudent.getStudentId(),
                             selectedCourse.getCourseId());
-            DatabaseAccessCode databaseAccessCode = new DatabaseAccessCode();
-            boolean isSaved = databaseAccessCode.register(registration);
+
+            boolean isSaved = registrationBo.create(registration);
             if (isSaved) {
                 new Alert(Alert.AlertType.INFORMATION, "registration was successful..", ButtonType.CLOSE).show();
                 clearFields();

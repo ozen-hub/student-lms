@@ -11,7 +11,7 @@ import com.devstack.lms.entity.User;
 import java.sql.SQLException;
 
 public class UserBoImpl implements UserBo {
-    private final UserDao userDao= (UserDao) DaoFactory.getDao(DaoFactory.DaoType.USER);
+    private final UserDao userDao=  DaoFactory.getDao(DaoFactory.DaoType.USER);
     @Override
     public boolean create(UserDto dto) throws SQLException, ClassNotFoundException {
         return userDao.create(
@@ -19,5 +19,10 @@ public class UserBoImpl implements UserBo {
                         dto.getUserId(), dto.getUsername(), dto.getPassword()
                 )
         );
+    }
+
+    @Override
+    public boolean login(String username, String password) throws ClassNotFoundException, SQLException {
+        return userDao.login(username,password);
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class RegistrationBoImpl implements RegistrationBo {
 
-    private final RegistrationDao registrationDao = (RegistrationDao) DaoFactory.getDao(DaoFactory.DaoType.REGISTRATION);
+    private final RegistrationDao registrationDao = DaoFactory.getDao(DaoFactory.DaoType.REGISTRATION);
 
     @Override
     public boolean create(RegistrationDto dto) throws SQLException, ClassNotFoundException {

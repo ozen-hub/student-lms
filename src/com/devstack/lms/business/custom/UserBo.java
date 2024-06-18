@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface UserBo {
     public boolean create(UserDto dto) throws SQLException, ClassNotFoundException;
+    public boolean login(String username, String password) throws ClassNotFoundException, SQLException;
 }

@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class StudentBoImpl implements StudentBo {
 
-    private final StudentDao studentDao = (StudentDao) DaoFactory.getDao(DaoFactory.DaoType.STUDENT);
+    private final StudentDao studentDao =  DaoFactory.getDao(DaoFactory.DaoType.STUDENT);
 
     @Override
     public boolean create(StudentDto dto) throws SQLException, ClassNotFoundException {

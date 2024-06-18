@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class CourseBoImpl implements CourseBo {
 
-    private final CourseDao courseDao = (CourseDao) DaoFactory.getDao(DaoFactory.DaoType.COURSE);
+    private final CourseDao courseDao = DaoFactory.getDao(DaoFactory.DaoType.COURSE);
 
     @Override
     public boolean create(CourseDto dto) throws SQLException, ClassNotFoundException {

@@ -13,7 +13,7 @@ public class DaoFactory {
         COURSE,REGISTRATION,STUDENT,USER
     }
 
-    public static SuperDao getDao(DaoType type){
+    /*public static SuperDao getDao(DaoType type){
         switch (type){
             case USER:
                 return new UserDaoImpl();
@@ -23,6 +23,21 @@ public class DaoFactory {
                 return new StudentDaoImpl();
             case REGISTRATION:
                 return new RegistrationDaoImpl();
+            default:
+                return null;
+        }
+    }*/
+
+    public static <T> T getDao(DaoType type){
+        switch (type){
+            case USER:
+                return (T) new UserDaoImpl();
+            case COURSE:
+                return (T)  new CourseDaoImpl();
+            case STUDENT:
+                return (T)  new StudentDaoImpl();
+            case REGISTRATION:
+                return (T)  new RegistrationDaoImpl();
             default:
                 return null;
         }
