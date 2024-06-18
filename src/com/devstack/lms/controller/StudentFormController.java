@@ -206,4 +206,8 @@ public class StudentFormController {
         stage.setScene(new Scene(FXMLLoader.load(resource)));
         stage.setTitle(location);
     }
+
+    public void printAllOnAction(ActionEvent actionEvent) {
+        // print
+    }
 }

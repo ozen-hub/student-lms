@@ -55,5 +55,6 @@
             <TableColumn fx:id="colOption" prefWidth="260.0" text="Options" />
         </columns>
       </TableView>
+      <Button layoutX="654.0" layoutY="100.0" mnemonicParsing="false" onAction="#printAllOnAction" prefHeight="25.0" prefWidth="102.0" text="Print All" />
    </children>
 </AnchorPane>

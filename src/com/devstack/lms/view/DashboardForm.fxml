@@ -32,5 +32,10 @@
             <Font size="16.0" />
          </font>
       </Button>
+      <Button layoutX="235.0" layoutY="241.0" mnemonicParsing="false" onAction="#makeDumpFileOnAction" prefHeight="160.0" prefWidth="211.0" text="Backup now">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
