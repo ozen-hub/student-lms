@@ -1,6 +1,7 @@
 package com.devstack.lms.business.custom.impl;
 
 import com.devstack.lms.business.custom.RegistrationBo;
+import com.devstack.lms.dao.DaoFactory;
 import com.devstack.lms.dao.custom.RegistrationDao;
 import com.devstack.lms.dao.custom.impl.RegistrationDaoImpl;
 import com.devstack.lms.dto.RegistrationDto;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class RegistrationBoImpl implements RegistrationBo {
 
-    private final RegistrationDao registrationDao = new RegistrationDaoImpl();
+    private final RegistrationDao registrationDao = (RegistrationDao) DaoFactory.getDao(DaoFactory.DaoType.REGISTRATION);
 
     @Override
     public boolean create(RegistrationDto dto) throws SQLException, ClassNotFoundException {

@@ -15,7 +15,7 @@ import java.util.List;
 public class CourseDaoImpl implements CourseDao {
     @Override
     public boolean create(Course course) throws SQLException, ClassNotFoundException {
-        return CrudUtil.execute("INSERT INTO course VALUES(?,?,?)",course.getCourseId(),course.getCourseName(),course.getFee())
+        return CrudUtil.execute("INSERT INTO course VALUES(?,?,?)",course.getCourseId(),course.getCourseName(),course.getFee());
     }
 
     @Override
